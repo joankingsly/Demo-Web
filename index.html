@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star Furniture &amp; Bedding Works - Billing</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="brand">
+          <div class="logo">★</div>
+          <div>
+            <h1>Star Fruniture &amp; Bedding Works</h1>
+            <p class="tagline">
+              Proprietor: Raja &middot; Elegant furniture. Simple billing.
+            </p>
+          </div>
+        </div>
+        <div class="invoice-meta">
+          <div>
+            <label for="invoiceNumber">Invoice #</label>
+            <input id="invoiceNumber" type="text" placeholder="INV-001" />
+          </div>
+          <div>
+            <label for="invoiceDate">Date</label>
+            <input id="invoiceDate" type="date" />
+          </div>
+        </div>
+      </header>
+
+      <section class="customer-section">
+        <div class="field-group">
+          <label for="customerName">Customer name</label>
+          <input
+            id="customerName"
+            type="text"
+            placeholder="Enter customer full name"
+          />
+        </div>
+        <div class="field-group">
+          <label for="customerPhone">Phone</label>
+          <input
+            id="customerPhone"
+            type="tel"
+            placeholder="Enter customer phone number"
+          />
+        </div>
+        <div class="field-group full-width">
+          <label for="customerAddress">Address</label>
+          <input
+            id="customerAddress"
+            type="text"
+            placeholder="Street, city, state, ZIP"
+          />
+        </div>
+      </section>
+
+      <section class="catalog-section">
+        <div class="catalog-header">
+          <h2>Products catalogue</h2>
+          <p>Select an item and click <strong>Add to bill</strong>.</p>
+        </div>
+        <div class="catalog-grid" id="catalogGrid">
+          <!-- Product cards rendered by JavaScript -->
+        </div>
+      </section>
+
+      <section class="items-section">
+        <div class="items-header">
+          <h2>Billing items</h2>
+          <button id="addItemBtn" type="button">+ Add item</button>
+        </div>
+
+        <div class="items-table-wrapper">
+          <table class="items-table">
+            <thead>
+              <tr>
+                <th style="width: 35%">Item / description</th>
+                <th style="width: 15%">Quantity</th>
+                <th style="width: 20%">Unit price</th>
+                <th style="width: 20%">Line total</th>
+                <th style="width: 10%"></th>
+              </tr>
+            </thead>
+            <tbody id="itemsBody">
+              <!-- Rows added dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="summary-section">
+        <div class="notes">
+          <label for="notes">Notes</label>
+          <textarea
+            id="notes"
+            rows="4"
+            placeholder="Special delivery instructions, warranty details, etc."
+          ></textarea>
+        </div>
+
+        <div class="totals">
+          <div class="totals-row">
+            <span>Items total</span>
+            <span id="subtotalDisplay">₹0.00</span>
+          </div>
+          <div class="totals-row grand-total">
+            <span>Payable amount</span>
+            <span id="grandTotalDisplay">₹0.00</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-actions">
+          <button id="clearAllBtn" type="button" class="secondary">
+            Clear cart
+          </button>
+          <button id="payNowBtn" type="button" class="primary">
+            Pay now (QR)
+          </button>
+          <button id="printBtn" type="button" class="primary">
+            Bill print / Save PDF
+          </button>
+          <button id="reportBtn" type="button" class="secondary">
+            Monthly sales report
+          </button>
+        </div>
+        <p class="footer-note">
+          Thank you for choosing
+          <strong>Star Fruniture &amp; Bedding Works</strong>.
+        </p>
+      </footer>
+
+      <!-- Pay Now QR modal -->
+      <div id="qrModal" class="modal-overlay" aria-hidden="true">
+        <div class="modal">
+          <div class="modal-header">
+            <h3>Pay now - QR code</h3>
+            <button
+              type="button"
+              class="modal-close"
+              id="closeQrBtn"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Scan this QR code to complete the payment at
+              <strong>Star Fruniture &amp; Bedding Works</strong>.
+            </p>
+            <img
+              src="https://via.placeholder.com/200x200.png?text=Payment+QR"
+              alt="Payment QR code"
+              class="qr-image"
+            />
+            <p class="modal-note">
+              This is a sample QR image. Replace with your real UPI / bank QR
+              later.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monthly sales report modal -->
+      <div id="reportModal" class="modal-overlay" aria-hidden="true">
+        <div class="modal large">
+          <div class="modal-header">
+            <h3>Monthly sales report</h3>
+            <button
+              type="button"
+              class="modal-close"
+              id="closeReportBtn"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="modal-note">
+              Every time you click <strong>Pay now</strong>, the invoice total
+              is saved in this browser and grouped by month.
+            </p>
+            <div class="report-table-wrapper">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Month</th>
+                    <th>Total sales</th>
+                  </tr>
+                </thead>
+                <tbody id="monthlyReportBody">
+                  <!-- Rows are rendered in JavaScript -->
+                </tbody>
+              </table>
+              <p
+                id="monthlyReportEmpty"
+                class="modal-note"
+                style="display: none"
+              >
+                No sales recorded yet. Use <strong>Pay now</strong> to record
+                invoices.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+  </html>
+
