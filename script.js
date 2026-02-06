@@ -24,15 +24,16 @@ const monthlyReportEmpty = document.getElementById("monthlyReportEmpty");
 
 const SALES_STORAGE_KEY = "starFurnitureSales";
 
-// Open‑source-friendly photos from Unsplash Source (royalty-free).
-// These endpoints always return a furniture-related image.
+// Open‑source-friendly photos from Unsplash (royalty-free).
+// These are fixed image URLs for reliable display.
 const products = [
   {
     id: "bed",
     name: "King size bed",
     description: "Solid wood bed with storage.",
     price: 25000,
-    image: "https://source.unsplash.com/featured/?bed,furniture",
+    image:
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80",
     tag: "Bed",
   },
   {
@@ -40,7 +41,8 @@ const products = [
     name: "Wooden sofa",
     description: "Three seater classic wooden sofa.",
     price: 18000,
-    image: "https://source.unsplash.com/featured/?wooden,sofa",
+    image:
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
     tag: "Wooden sofa",
   },
   {
@@ -48,7 +50,8 @@ const products = [
     name: "Cushion sofa",
     description: "Soft cushion sofa for living room.",
     price: 22000,
-    image: "https://source.unsplash.com/featured/?cushion,sofa",
+    image:
+      "https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=800&q=80",
     tag: "Cushion sofa",
   },
 ];
